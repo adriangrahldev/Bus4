@@ -1,0 +1,16 @@
+https://www.youtube.com/watch?v=Njk-3VioS8w
+
+Analia:
+Llegue hasta el minuto 17:19
+Cargue 448 lineas de codigo en el index que son los datos 
+Llegue hasta hacer el Botones con la Cuidades 
+Al presionar te tirar error por que es la parte que sigue 
+
+
+Kevin:
+llegue al minuto 29:28
+agregue destino
+fecha 
+buscar
+y se esta trabajando en los buses disponibles 
+hay un error de que no se usa una variable Buses calculo que estará cambiando mas adelante o le usara mas tarde 
