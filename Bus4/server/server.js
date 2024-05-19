@@ -26,6 +26,8 @@ const UserRouter = require("./routes/user.routes");
 app.use("/api/auth", UserRouter);
 const busRoutes = require('./routes/bus.routes');
 app.use('/api/bus', busRoutes);
+const reservaRoutes = require('./routes/reserva.routes');
+app.use('/api/reservas', reservaRoutes);
 
 
 // Inicio del servidor

@@ -1,4 +1,5 @@
 const Bus = require('../models/bus.model');
+const Reserva = require('../models/reserva.model');
 
 // Función para manejar el registro de autobuses
 exports.registerBus = async (req, res) => {
@@ -14,7 +15,22 @@ exports.registerBus = async (req, res) => {
 // Función para obtener todos los autobuses
 exports.getAllBuses = async (req, res) => {
   try {
-    const buses = await Bus.find();
+    // get buses with the number of reservations
+    const buses = await Bus.aggregate([
+      {
+        $lookup: {
+          from: 'reservas',
+          localField: '_id',
+          foreignField: 'bus',
+          as: 'reservas',
+        },
+      },
+      {
+        $addFields: {
+          numReservas: { $size: '$reservas' },
+        },
+      },
+    ]);
     res.status(200).json(buses);
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener los autobuses' });
@@ -25,10 +41,11 @@ exports.getAllBuses = async (req, res) => {
 exports.getBusById = async (req, res) => {
   try {
     const bus = await Bus.findById(req.params.id);
+    const reservas = await Reserva.find({ bus: req.params.id });
     if (!bus) {
       return res.status(404).json({ message: 'Autobús no encontrado' });
     }
-    res.status(200).json(bus);
+    res.status(200).json({bus, reservas});
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener el autobús' });
   }

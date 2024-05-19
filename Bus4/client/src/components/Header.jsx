@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { UserContext } from "../context/UserContext"; // Asegúrate de importar correctamente el contexto de usuario
@@ -51,7 +51,15 @@ const Header = () => {
     <HeaderContainer>
       <HeaderTitle>Bus Ticket Book</HeaderTitle>
       {user && (
-        <LogoutButton onClick={logOutUser}>Cerrar Sesión</LogoutButton>
+        <>
+          <Link to="/BusSearch" className="btn btn-sm btn-outline-light me-4">
+            Buscar Viajes
+          </Link>
+          <Link to="/mis-reservas" className="btn btn-sm btn-outline-light me-4">
+            Mis reservas
+          </Link>
+          <LogoutButton onClick={logOutUser}>Cerrar Sesión</LogoutButton>
+        </>
       )}
     </HeaderContainer>
   );

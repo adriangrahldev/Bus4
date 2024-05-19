@@ -66,8 +66,11 @@ export default function BusList({ filteredBuses }) { // Cambiado de 'buses' a 'f
             </p>
           </div>
           <div>
-          <Button className="mb-3" variant="success" onClick={() => navigate(`/bus/${bus._id}`)}>
-
+            <div>
+              <h3 style={{textDecoration: 'underline'}} >{bus.capacidadBus - bus.numReservas}</h3>
+              <span>Lugares disponibles</span>
+            </div>
+          <Button className="mb-3" variant="success" onClick={() => navigate(`/reservas/crear/${bus._id}`)}>
           Reservar ahora
           </Button>
         </div>

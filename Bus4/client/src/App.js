@@ -14,6 +14,8 @@ import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import BusLayout from './components/BusLayout';
+import ReservationCreate from './components/ReservationCreate';
+import MisReservas from './components/MisReservas';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
           <Route path='/BusSearch' element={<PrivateRoute><BusSearch searchState={searchState} setSearchState={setSearchState} /></PrivateRoute>}></Route>
           <Route path='/RegisBus' element={<AdminRoute><RegisBus/></AdminRoute>}></Route>
           <Route path='/bus/:id'  element={<PrivateRoute><BusLayout/></PrivateRoute>}></Route>
+          <Route path='/reservas/crear/:busId' element={<PrivateRoute><ReservationCreate/></PrivateRoute>}></Route>
+          <Route path='/mis-reservas' element={<PrivateRoute><MisReservas/></PrivateRoute>}></Route>
         </Routes>
       </BrowserRouter>
       </UserProvider>

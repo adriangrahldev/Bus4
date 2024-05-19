@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 
 
 
@@ -14,10 +15,15 @@ const ReservaModel = new mongoose.Schema({
     },
     fechaReserva: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     numAsiento: {
         type: Number,
         required: true
     },
 }, { timestamps: true });
+
+const Reserva = mongoose.model('Reserva', ReservaModel);
+
+module.exports = Reserva;

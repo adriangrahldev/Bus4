@@ -3,10 +3,11 @@ const Reserva = require('../models/reserva.model');
 
 // Función para manejar el registro de reservas
 exports.registerReserva = async (req, res) => {
+    console.log(req.body);
     try {
         const newReserva = new Reserva(req.body);
         await newReserva.save();
-        res.status(201).json({ message: 'Reserva registrada correctamente' });
+        res.status(201).json({ message: 'Reserva registrada correctamente', saved: true});
     } catch (error) {
         res.status(500).json({ error: 'Error al registrar la reserva' });
     }
@@ -32,6 +33,16 @@ exports.getReservaById = async (req, res) => {
         res.status(200).json(reserva);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener la reserva' });
+    }
+}
+
+// Función para obtener las reservas de un usuario
+exports.getReservasByUser = async (req, res) => {
+    try {
+        const reservas = await Reserva.find({ user: req.params.id }).populate('bus').populate('user');
+        res.status(200).json(reservas);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener las reservas' });
     }
 }
 
