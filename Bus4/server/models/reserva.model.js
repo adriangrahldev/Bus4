@@ -2,12 +2,12 @@
 
 
 const ReservaModel = new mongoose.Schema({
-    userId: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    busId: {
+    bus: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bus',
         required: true
